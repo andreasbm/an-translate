@@ -3,9 +3,7 @@
 This is a cool showcase of how web components and custom attributes can be used for translations.
 
 ## 👍 Step 1 - Create a JSON file with your strings
-```
-en.json
-
+```json
 {
 	"title": "Hello World!",
 	"subtitle": "This is a cool showcase of how web components and custom attributes can be used for translations.",
@@ -26,6 +24,7 @@ Can either be in markup.
 ```
 
 Or in Javascript.
+
 ```js
 const translate = document.querySelector("an-translate-controller");
 translate.src = "strings/en.json";
@@ -35,6 +34,14 @@ translate.src = "strings/en.json";
 
 ```html
 <h1 an-translate="title"></h1>
+<h1 an-translate="language.english"></h1>
+```
+
+Will result in:
+
+```
+Hello World!
+English
 ```
 
 The strings will of course update themselves whenever you change the attribute value or the strings source.
@@ -42,9 +49,7 @@ The strings will of course update themselves whenever you change the attribute v
 ## 🤘 Step 4 - Use placeholders and fill them out on run time
 
 If you want to use placeholders, that is possible. Use the double brackets syntax {{ key }} in your strings (the spaces are optional) and interpolate them in the attribute value using the ":" character followed by key-value pairs. Like this:
-```
-en.json
-
+```json
 {
 	"title": "Hello {{ name }}!",
 	...
@@ -55,6 +60,13 @@ en.json
 ```html
 <h1 an-translate='title:{ "name": "World"}'></h1>
 <h1 an-translate='title:{ "name": "Andreas"}'></h1>
+```
+
+Will result in:
+
+```
+Hello World!
+Hellow Andreas
 ```
 
 # 👏 Licence
