@@ -1,3 +1,5 @@
+import {AnTranslateController} from "./translate-controller.js";
+
 class AnTranslate {
 
 	/**
@@ -7,7 +9,7 @@ class AnTranslate {
 		this._setTranslation();
 
 		// Listen for changed in the translation language
-		document.addEventListener("translationChanged", this._setTranslation.bind(this));
+		document.addEventListener(AnTranslateController.translationChangedEventName, this._setTranslation.bind(this));
 
 		// Keep a reference to the old value for optimizations
 		this.oldValue = this.value;
@@ -17,7 +19,7 @@ class AnTranslate {
 	 * Clean up the attribute when disconnected.
 	 */
 	disconnectedCallback () {
-		document.removeEventListener("translationChanged", this._setTranslation);
+		document.removeEventListener(AnTranslateController.translationChangedEventName, this._setTranslation);
 	}
 
 	/**
@@ -33,7 +35,14 @@ class AnTranslate {
 	 * @private
 	 */
 	_setTranslation () {
-		this.ownerElement.textContent = window.anTranslateController.get(this.value || `{{${this.value}}}`);
+
+		// Find the parts of the translation
+		const atoms = this.value.split(/:(.*)/);
+		const key = atoms.length > 0 ? atoms[0] : null;
+		const obj = atoms.length > 1 ? JSON.parse(atoms[1]) : null;
+
+		const translation = window.anTranslateController.get(key, obj);
+		this.ownerElement.textContent = translation || `{{${this.value}}}`;
 	}
 }
 

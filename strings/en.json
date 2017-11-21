@@ -1,5 +1,5 @@
 {
-	"title": "Hello World!",
+	"title": "Hello {{name}}!",
 	"subtitle": "This is a cool showcase of how web components and custom attributes can be used for translations.",
 	"language": {
 		"danish": "Danish",

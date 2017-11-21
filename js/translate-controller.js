@@ -1,5 +1,9 @@
 export class AnTranslateController extends HTMLElement {
 
+	static get translationChangedEventName () {
+		return "translationChanged";
+	}
+
 	static get observedAttributes () {
 		return ["src"];
 	}
@@ -53,7 +57,7 @@ export class AnTranslateController extends HTMLElement {
 		this.strings = strings;
 
 		// Notify the listeners that the translation has changed.
-		const event = new CustomEvent("translationChanged");
+		const event = new CustomEvent(AnTranslateController.translationChangedEventName);
 		document.dispatchEvent(event);
 	}
 
@@ -100,11 +104,12 @@ export class AnTranslateController extends HTMLElement {
 	/**
 	 * Finds the corresponding translation in the current strings based on a key.
 	 * @param key
+	 * @param obj
 	 * @returns {*}
 	 */
-	get (key) {
-		if (this._isEmpty(this.strings)) {
-			return;
+	get (key, obj) {
+		if (this._isEmpty(this.strings) || key == null) {
+			return null;
 		}
 
 		// Split the key in parts (example: hello.world)
@@ -114,6 +119,18 @@ export class AnTranslateController extends HTMLElement {
 		let translation = this.strings;
 		while (parts.length > 0) {
 			translation = translation[parts.shift()];
+
+			// Do not continue if the key or translation is not defined
+			if (this._isEmpty(translation)) return null;
+		}
+
+		// Replace the placeholders
+		if (obj != null) {
+			for (const key in obj) {
+				if (obj.hasOwnProperty(key)) {
+					translation = translation.replace(new RegExp(`{{( )*${key}( )*}}`), obj[key]);
+				}
+			}
 		}
 
 		return translation;
