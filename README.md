@@ -2,6 +2,8 @@
 
 This is a cool showcase of how web components and custom attributes can be used for translations.
 
+Demo: [https://andreasbm.github.io/an-translate/](https://andreasbm.github.io/an-translate/)
+
 ## 👍 Step 1 - Create a JSON file with your strings
 ```json
 {
