@@ -51,21 +51,21 @@ The strings will of course update themselves whenever you change the attribute v
 If you want to use placeholders, that is possible. Use the double brackets syntax {{ key }} in your strings (the spaces are optional) and interpolate them in the attribute value using the ":" character followed by key-value pairs. Like this:
 ```json
 {
-	"title": "Hello {{ name }}!",
+	"title": "{{ greeting }} {{ name }}!",
 }
 
 ```
 
 ```html
-<h1 an-translate='title:{ "name": "World"}'></h1>
-<h1 an-translate='title:{ "name": "Andreas"}'></h1>
+<h1 an-translate='title:{ "greeting": "Hello", "name": "World"}'></h1>
+<h1 an-translate='title:{ "greeting": "Good morning", "name": "Andreas"}'></h1>
 ```
 
 Will result in:
 
 ```
 Hello World!
-Hellow Andreas
+Good morning Andreas!
 ```
 
 # 👏 Licence
