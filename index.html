@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>an-translate</title>
+</head>
+<body>
+
+<an-translate-controller src="strings/en.json"></an-translate-controller>
+
+<button langSrc="strings/da.json" an-translate="language.danish"></button>
+<button langSrc="strings/en.json" an-translate="language.english"></button>
+
+<h1 an-translate="title"></h1>
+<p an-translate="subtitle"></p>
+
+<script type="module" src="js/translate-controller.js"></script>
+<script type="module" src="js/translate.js"></script>
+<script src="/node_modules/custom-attributes/attr.js"></script>
+
+<script type="module">
+	const translate = document.querySelector("an-translate-controller");
+	const buttons = document.querySelectorAll("button");
+	for (const btn of buttons) {
+		const src = btn.getAttribute("langSrc");
+		btn.addEventListener("click", e => {
+			translate.src = src;
+		});
+	}
+</script>
+</body>
+</html>
