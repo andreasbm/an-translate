@@ -52,7 +52,6 @@ If you want to use placeholders, that is possible. Use the double brackets synta
 ```json
 {
 	"title": "Hello {{ name }}!",
-	...
 }
 
 ```
