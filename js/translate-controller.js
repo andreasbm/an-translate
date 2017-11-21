@@ -57,7 +57,13 @@ export class AnTranslateController extends HTMLElement {
 		this.strings = strings;
 
 		// Notify the listeners that the translation has changed.
-		const event = new CustomEvent(AnTranslateController.translationChangedEventName);
+		const event = new CustomEvent(AnTranslateController.translationChangedEventName, {
+			detail: {
+				strings: strings,
+				src: src
+			}
+		});
+
 		document.dispatchEvent(event);
 	}
 

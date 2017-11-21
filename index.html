@@ -11,7 +11,9 @@
 <button langSrc="strings/da.json" an-translate="language.danish"></button>
 <button langSrc="strings/en.json" an-translate="language.english"></button>
 
-<h1 an-translate='title:{"name": "World"}'></h1>
+<input value="World" />
+
+<h1 id="hello" an-translate='title:{"name": "World"}'></h1>
 <p an-translate="subtitle"></p>
 
 <script type="module" src="js/translate-controller.js"></script>
@@ -22,11 +24,23 @@
 	const translate = document.querySelector("an-translate-controller");
 	const buttons = document.querySelectorAll("button");
 	for (const btn of buttons) {
-		const src = btn.getAttribute("langSrc");
 		btn.addEventListener("click", e => {
-			translate.src = src;
+			translate.src = e.target.getAttribute("langSrc");
 		});
 	}
+
+	const input = document.querySelector("input");
+	const helloTitle = document.querySelector("#hello");
+	input.addEventListener("input", e => {
+		const name = e.target.value;
+		helloTitle.setAttribute("an-translate", `title:{"name": "${name}"}`);
+	});
+
+	document.addEventListener("translationChanged", e => {
+		console.log("The language changed!");
+		console.log("Src: ", e.detail.src);
+		console.log("Strings: ", e.detail.strings);
+	});
 </script>
 </body>
 </html>

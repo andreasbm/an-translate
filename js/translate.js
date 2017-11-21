@@ -10,9 +10,6 @@ class AnTranslate {
 
 		// Listen for changed in the translation language
 		document.addEventListener(AnTranslateController.translationChangedEventName, this._setTranslation.bind(this));
-
-		// Keep a reference to the old value for optimizations
-		this.oldValue = this.value;
 	}
 
 	/**
@@ -43,6 +40,9 @@ class AnTranslate {
 
 		const translation = window.anTranslateController.get(key, obj);
 		this.ownerElement.textContent = translation || `{{${this.value}}}`;
+
+		// Keep a reference to the old value for optimizations
+		this.oldValue = this.value;
 	}
 }
 
