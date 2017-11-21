@@ -33,7 +33,7 @@ export class AnTranslateController extends HTMLElement {
 	 * @returns {Promise<void>}
 	 */
 	async attributeChangedCallback (attr, oldValue, newValue) {
-		if (attr === "src") {
+		if (attr === "src" && oldValue !== newValue) {
 			await this._updateLanguage();
 		}
 	}
