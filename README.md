@@ -48,6 +48,12 @@ English
 
 The strings will of course update themselves whenever you change the attribute value or the strings source.
 
+You can also get the translations, using the get method on the AnTranslateController.
+
+```
+window.anTranslateController.get("title", { name: "World" })); // Hello World!
+```
+
 ## 🤘 Step 4 - Use placeholders and fill them out on run time
 
 If you want to use placeholders, that is possible. Use the double brackets syntax {{ key }} in your strings (the spaces are optional) and interpolate them in the attribute value using the ":" character followed by key-value pairs. Like this:

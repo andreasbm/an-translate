@@ -40,6 +40,8 @@
 		console.log("The language changed!");
 		console.log("Src: ", e.detail.src);
 		console.log("Strings: ", e.detail.strings);
+		console.log("Title: ", translate.get("title", { name: "World" }));
+		console.log("English: ", window.anTranslateController.get("lanuage.english"));
 	});
 </script>
 </body>

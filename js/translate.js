@@ -1,3 +1,5 @@
+// @ts-check
+
 import {AnTranslateController} from "./translate-controller.js";
 
 class AnTranslate {
@@ -39,7 +41,7 @@ class AnTranslate {
 		const obj = atoms.length > 1 ? JSON.parse(atoms[1]) : null;
 
 		const translation = window.anTranslateController.get(key, obj);
-		this.ownerElement.textContent = translation || `{{${this.value}}}`;
+		this.ownerElement.textContent = translation || `${this.value}`;
 
 		// Keep a reference to the old value for optimizations
 		this.oldValue = this.value;
