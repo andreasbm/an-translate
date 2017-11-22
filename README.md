@@ -51,7 +51,7 @@ The strings will of course update themselves whenever you change the attribute v
 You can also get the translations, using the get method on the AnTranslateController.
 
 ```js
-window.anTranslateController.get("title", { name: "World" })); // Hello World!
+translate.get("title", { name: "World" })); // Hello World!
 ```
 
 ## 🤘 Step 4 - Use placeholders and fill them out on run time

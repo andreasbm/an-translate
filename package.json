@@ -2,7 +2,7 @@
 	"name": "an-translate",
 	"version": "0.0.1",
 	"scripts": {
-		"start": "http-server -a localhost -p 8000 -c-1 -o",
+		"start": "http-server -a localhost -p 8001 -c-1 -o",
 		"s": "npm run start"
 	},
 	"dependencies": {

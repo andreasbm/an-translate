@@ -21,8 +21,6 @@ export class AnTranslateController extends HTMLElement {
 	constructor () {
 		super();
 
-		window.anTranslateController = this;
-
 		this.cachedStrings = {};
 		this.strings = {};
 	}
