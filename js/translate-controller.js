@@ -1,3 +1,5 @@
+// @ts-check
+
 export class AnTranslateController extends HTMLElement {
 
 	static get translationChangedEventName () {
@@ -113,7 +115,7 @@ export class AnTranslateController extends HTMLElement {
 	 * @param obj
 	 * @returns {*}
 	 */
-	get (key, obj) {
+	get (key, obj = null) {
 		if (this._isEmpty(this.strings) || key == null) {
 			return null;
 		}
