@@ -8,6 +8,7 @@ class AnTranslate {
 	 * When connected, hook up listeners and setup the translation.
 	 */
 	connectedCallback () {
+		this.translate = document.querySelector("an-translate-controller");
 		this._setTranslation();
 
 		// Listen for changed in the translation language
@@ -40,8 +41,8 @@ class AnTranslate {
 		const key = atoms.length > 0 ? atoms[0] : null;
 		const obj = atoms.length > 1 ? JSON.parse(atoms[1]) : null;
 
-		const translation = window.anTranslateController.get(key, obj);
-		this.ownerElement.textContent = translation || `${this.value}`;
+		const translation = this.translate.get(key, obj);
+		this.ownerElement.innerHTML = translation || `${this.value}`;
 
 		// Keep a reference to the old value for optimizations
 		this.oldValue = this.value;

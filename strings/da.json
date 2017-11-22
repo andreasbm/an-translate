@@ -1,6 +1,6 @@
 {
 	"title": "Hej {{ name }}!",
-	"subtitle": "Dette er en sej lille demo der viser hvordan web components og custom attributes kan blive brugt til at oversætte.",
+	"subtitle": "Dette er en sej lille demo der viser hvordan web components og custom attributes kan blive brugt til at <b>oversætte.</b>",
 	"language": {
 		"danish": "Dansk",
 		"english": "Engelsk"
