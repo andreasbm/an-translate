@@ -50,13 +50,13 @@ The strings will of course update themselves whenever you change the attribute v
 
 You can also get the translations, using the get method on the AnTranslateController.
 
-```
+```js
 window.anTranslateController.get("title", { name: "World" })); // Hello World!
 ```
 
 ## 🤘 Step 4 - Use placeholders and fill them out on run time
 
-If you want to use placeholders, that is possible. Use the double brackets syntax {{ key }} in your strings (the spaces are optional) and interpolate them in the attribute value using the ":" character followed by key-value pairs. Like this:
+If you want to use placeholders, that is possible. Use the double curly brackets syntax {{ key }} in your strings (the spaces are optional) and interpolate them in the attribute value using the ":" character followed by a key-value pairs object. Like this:
 ```json
 {
 	"title": "{{ greeting }} {{ name }}!",
