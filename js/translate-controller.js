@@ -21,7 +21,7 @@ export class AnTranslateController extends HTMLElement {
 	constructor () {
 		super();
 
-		this.cachedStrings = {};
+		this.cachedStrings = new Map();
 		this.strings = {};
 	}
 
@@ -45,13 +45,15 @@ export class AnTranslateController extends HTMLElement {
 	 */
 	async _updateLanguage () {
 		const src = this.src;
-
-		let strings = this._getCachedStrings(src);
+		let strings = {};
 
 		// If the strings has not been cached already, fetch them.
-		if (this._isEmpty(strings)) {
+		if (!this.cachedStrings.has(src)) {
 			strings = await this._loadJSON(src);
-			this._setCachedStrings(src, strings);
+			this.cachedStrings.set(src, strings);
+
+		} else {
+			strings = this.cachedStrings.get(src);
 		}
 
 		this.strings = strings;
@@ -68,32 +70,12 @@ export class AnTranslateController extends HTMLElement {
 	}
 
 	/**
-	 * Sets the cached strings.
-	 * @param key
-	 * @param strings
-	 * @private
-	 */
-	_setCachedStrings (key, strings) {
-		this.cachedStrings[key] = strings;
-	}
-
-	/**
-	 * Returns the cached string if any.
-	 * @param key
-	 * @returns {*}
-	 * @private
-	 */
-	_getCachedStrings (key) {
-		return this.cachedStrings[key];
-	}
-
-	/**
 	 * Returns whether an object is empty or null.
 	 * @param obj
 	 * @returns {boolean}
 	 * @private
 	 */
-	_isEmpty (obj) {
+	_isNullOrEmpty (obj) {
 		return obj == null || Object.keys(obj).length === 0;
 	}
 
@@ -114,7 +96,7 @@ export class AnTranslateController extends HTMLElement {
 	 * @returns {*}
 	 */
 	get (key, obj = null) {
-		if (this._isEmpty(this.strings) || key == null) {
+		if (this._isNullOrEmpty(this.strings) || key == null) {
 			return null;
 		}
 
@@ -127,7 +109,7 @@ export class AnTranslateController extends HTMLElement {
 			translation = translation[parts.shift()];
 
 			// Do not continue if the key or translation is not defined
-			if (this._isEmpty(translation)) return null;
+			if (this._isNullOrEmpty(translation)) return null;
 		}
 
 		// Replace the placeholders
