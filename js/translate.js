@@ -50,4 +50,3 @@ class AnTranslate {
 }
 
 customAttributes.define("an-translate", AnTranslate);
-
